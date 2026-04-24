@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>fuzzymake · Görsel Üretici</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>fuzzymake</h1>
+        <p class="tag">
+          Claude ile prompt'unu zenginleştir, DALL·E 3 ile görsele dönüştür.
+        </p>
+      </header>
+
+      <section class="card">
+        <label for="idea">Fikrin</label>
+        <textarea
+          id="idea"
+          rows="3"
+          placeholder="Örn: dağ manzarasında yalnız bir kulübe, günbatımı"
+        ></textarea>
+
+        <div class="row">
+          <button id="enhance-btn" class="secondary">✨ Claude ile zenginleştir</button>
+          <button id="generate-btn" class="primary">🎨 Görseli üret</button>
+        </div>
+
+        <label for="prompt">Prompt (düzenlenebilir)</label>
+        <textarea
+          id="prompt"
+          rows="8"
+          placeholder="Zenginleştirilmiş prompt burada görünecek, elle de yazabilirsin."
+        ></textarea>
+
+        <div id="status" class="status"></div>
+      </section>
+
+      <section id="result-card" class="card hidden">
+        <h2>Sonuç</h2>
+        <img id="result-image" alt="" />
+        <details>
+          <summary>DALL·E 3'ün gözden geçirdiği prompt</summary>
+          <p id="revised-prompt"></p>
+        </details>
+        <a id="download-link" href="#" download="fuzzymake.png" class="primary">
+          ⬇️ İndir
+        </a>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
