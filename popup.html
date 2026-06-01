@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YT Multi Translate</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-header">
+    <span class="popup-logo">🌍</span>
+    <div>
+      <div class="popup-title">Çoklu Dil Çevirici</div>
+      <div class="popup-subtitle">YouTube Studio</div>
+    </div>
+  </div>
+
+  <div class="popup-body">
+    <div class="status-row" id="status-row">
+      <span class="status-dot" id="status-dot"></span>
+      <span id="status-text">YouTube Studio algılanıyor...</span>
+    </div>
+
+    <button class="btn-open" id="btn-open">Panel'i Aç / Kapat</button>
+
+    <div class="divider"></div>
+
+    <div class="section-title">Google Translate API Key</div>
+    <p class="section-desc">API key olmadan ücretsiz LibreTranslate kullanılır. Google API ile daha doğru çeviriler elde edebilirsiniz.</p>
+    <input type="password" id="api-key-input" class="api-input" placeholder="Google API Key (opsiyonel)">
+    <button class="btn-save" id="btn-save">Kaydet</button>
+    <div id="save-msg" class="save-msg"></div>
+  </div>
+</body>
+<script src="popup.js"></script>
+</html>

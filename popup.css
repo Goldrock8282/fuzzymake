@@ -1,0 +1,115 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  width: 300px;
+  font-family: 'YouTube Sans', Roboto, Arial, sans-serif;
+  font-size: 13px;
+  color: #0f0f0f;
+  background: #fff;
+}
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+  color: #fff;
+}
+
+.popup-logo { font-size: 24px; }
+.popup-title { font-weight: 700; font-size: 14px; }
+.popup-subtitle { font-size: 11px; opacity: 0.85; }
+
+.popup-body { padding: 14px 16px; }
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 8px 10px;
+  background: #f5f5f5;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #bbb;
+  flex-shrink: 0;
+}
+.status-dot.active { background: #4caf50; }
+.status-dot.inactive { background: #f44336; }
+
+.btn-open {
+  width: 100%;
+  padding: 10px;
+  background: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-bottom: 14px;
+}
+.btn-open:hover { background: #cc0000; }
+.btn-open:disabled { background: #aaa; cursor: not-allowed; }
+
+.divider {
+  height: 1px;
+  background: #e0e0e0;
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  color: #606060;
+}
+
+.section-desc {
+  font-size: 11px;
+  color: #808080;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.api-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-bottom: 8px;
+  outline: none;
+}
+.api-input:focus { border-color: #ff0000; }
+
+.btn-save {
+  width: 100%;
+  padding: 8px;
+  background: #065fd4;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-save:hover { background: #0453bb; }
+
+.save-msg {
+  font-size: 12px;
+  color: #4caf50;
+  margin-top: 6px;
+  text-align: center;
+  min-height: 16px;
+}
