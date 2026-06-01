@@ -23,8 +23,17 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
 });
 
 btnOpen.addEventListener('click', () => {
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    chrome.tabs.sendMessage(tabs[0].id, { type: 'TOGGLE_PANEL' });
+  chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
+    const tabId = tabs[0]?.id;
+    if (!tabId) return;
+    try {
+      await chrome.tabs.sendMessage(tabId, { type: 'TOGGLE_PANEL' });
+    } catch {
+      // Content script henüz yüklenmemiş, scripti enjekte et
+      await chrome.scripting.executeScript({ target: { tabId }, files: ['content.js'] });
+      await chrome.scripting.insertCSS({ target: { tabId }, files: ['content.css'] });
+      await chrome.tabs.sendMessage(tabId, { type: 'TOGGLE_PANEL' });
+    }
     window.close();
   });
 });
