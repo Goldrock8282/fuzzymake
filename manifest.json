@@ -11,7 +11,9 @@
   "host_permissions": [
     "https://studio.youtube.com/*",
     "https://translation.googleapis.com/*",
-    "https://libretranslate.de/*"
+    "https://translate.argosopentech.com/*",
+    "https://translate.terraprint.co/*",
+    "https://libretranslate.com/*"
   ],
   "action": {
     "default_popup": "popup.html",

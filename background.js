@@ -1,11 +1,12 @@
-const LIBRE_TRANSLATE_URL = 'https://libretranslate.de/translate';
+const LIBRE_TRANSLATE_ENDPOINTS = [
+  'https://translate.argosopentech.com/translate',
+  'https://translate.terraprint.co/translate',
+  'https://libretranslate.com/translate',
+];
 
 async function translateText(text, targetLang, apiKey) {
   if (!text || !text.trim()) return '';
-
-  if (apiKey) {
-    return translateWithGoogle(text, targetLang, apiKey);
-  }
+  if (apiKey) return translateWithGoogle(text, targetLang, apiKey);
   return translateWithLibre(text, targetLang);
 }
 
@@ -25,17 +26,28 @@ async function translateWithGoogle(text, targetLang, apiKey) {
 }
 
 async function translateWithLibre(text, targetLang) {
-  const response = await fetch(LIBRE_TRANSLATE_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ q: text, source: 'auto', target: targetLang, format: 'text' }),
-  });
-  if (!response.ok) {
-    throw new Error(`LibreTranslate hatası: ${response.status}`);
+  let lastError;
+  for (const endpoint of LIBRE_TRANSLATE_ENDPOINTS) {
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ q: text, source: 'auto', target: targetLang, format: 'text' }),
+      });
+      const raw = await response.text();
+      let data;
+      try {
+        data = JSON.parse(raw);
+      } catch {
+        throw new Error(`Sunucu geçersiz yanıt döndürdü (${endpoint})`);
+      }
+      if (!response.ok || data.error) throw new Error(data.error || `HTTP ${response.status}`);
+      return data.translatedText;
+    } catch (err) {
+      lastError = err;
+    }
   }
-  const data = await response.json();
-  if (data.error) throw new Error(data.error);
-  return data.translatedText;
+  throw new Error(`Tüm ücretsiz sunucular başarısız: ${lastError?.message}`);
 }
 
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
