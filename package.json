@@ -1,0 +1,28 @@
+{
+  "name": "fuzzymake",
+  "version": "1.0.0",
+  "description": "Eski videoları upscale eden web uygulaması",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "make-test-video": "node scripts/make-test-video.js",
+    "test": "node test/e2e.test.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Goldrock8282/fuzzymake.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Goldrock8282/fuzzymake/issues"
+  },
+  "homepage": "https://github.com/Goldrock8282/fuzzymake#readme",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@ffprobe-installer/ffprobe": "^2.1.2",
+    "express": "^5.2.1",
+    "multer": "^2.2.0"
+  }
+}
