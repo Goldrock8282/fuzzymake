@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Upscale — Eski Videolarınızı Yenileyin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🎞️ Video Upscale</h1>
+    <p class="tagline">Eski, düşük çözünürlüklü videolarınızı yükleyin; 2x veya 4x büyütüp netleştirelim.</p>
+  </header>
+
+  <main>
+    <!-- Adım 1: Yükleme -->
+    <section id="step-upload" class="card">
+      <h2>1. Videonuzu yükleyin</h2>
+      <div id="dropzone" tabindex="0">
+        <p><strong>Videoyu buraya sürükleyin</strong> ya da tıklayıp seçin</p>
+        <p class="hint">mp4, avi, mov, mkv, webm, mpg — en fazla 500 MB</p>
+        <input type="file" id="file-input" accept=".mp4,.avi,.mov,.mkv,.webm,.mpg,.mpeg,.wmv,.flv,.3gp" hidden>
+      </div>
+      <div id="upload-status" class="status" hidden></div>
+      <div id="file-info" class="info-grid" hidden></div>
+    </section>
+
+    <!-- Adım 2: Ayarlar -->
+    <section id="step-settings" class="card" hidden>
+      <h2>2. Ayarları seçin</h2>
+      <div class="settings">
+        <fieldset>
+          <legend>Büyütme oranı</legend>
+          <label><input type="radio" name="scale" value="2" checked> 2x</label>
+          <label><input type="radio" name="scale" value="4"> 4x</label>
+        </fieldset>
+        <fieldset>
+          <legend>İyileştirmeler</legend>
+          <label><input type="checkbox" id="opt-denoise" checked> Gürültü azaltma (eski kayıtlardaki gren için)</label>
+          <label><input type="checkbox" id="opt-sharpen" checked> Keskinleştirme</label>
+        </fieldset>
+        <fieldset>
+          <legend>Mod</legend>
+          <label><input type="radio" name="engine" value="fast" checked> ⚡ Hızlı (ffmpeg Lanczos)</label>
+          <label id="ai-option"><input type="radio" name="engine" value="ai"> ✨ Yüksek Kalite (Real-ESRGAN AI)</label>
+          <p id="ai-note" class="hint" hidden></p>
+        </fieldset>
+      </div>
+      <button id="btn-start" class="primary">Upscale işlemini başlat</button>
+    </section>
+
+    <!-- Adım 3: İlerleme -->
+    <section id="step-progress" class="card" hidden>
+      <h2>3. İşleniyor…</h2>
+      <div class="progress-track"><div id="progress-bar" class="progress-fill"></div></div>
+      <p id="progress-text">Başlatılıyor…</p>
+    </section>
+
+    <!-- Adım 4: Sonuç -->
+    <section id="step-result" class="card" hidden>
+      <h2>4. Sonuç</h2>
+      <div class="compare">
+        <figure>
+          <figcaption>Orijinal <span id="res-before" class="badge"></span></figcaption>
+          <video id="video-before" controls muted></video>
+        </figure>
+        <figure>
+          <figcaption>Upscale edilmiş <span id="res-after" class="badge badge-ok"></span></figcaption>
+          <video id="video-after" controls muted></video>
+        </figure>
+      </div>
+      <div class="actions">
+        <a id="btn-download" class="primary button">⬇️ Upscale edilmiş videoyu indir</a>
+        <button id="btn-restart">Yeni video işle</button>
+      </div>
+    </section>
+
+    <div id="error-box" class="error" hidden></div>
+  </main>
+
+  <footer>
+    <p>Tüm işlem bu sunucuda yerel olarak yapılır; videolarınız dış servislere gönderilmez.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
